@@ -1,0 +1,16 @@
+android/toolchain/
+android/build/
+android/build-assets/
+android/test-build/
+android/signing/
+android/emulator/
+android/release/
+node_modules/
+__pycache__/
+*.jks
+*.keystore
+*.apk
+*.idsig
+.env*
+**/progress.json
+**/server-config.js

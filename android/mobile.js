@@ -1,0 +1,21 @@
+// Keep practice prominent; details remain available on demand.
+document.querySelector('.intro').remove();
+document.querySelector('header small').textContent='OFFLINE';
+document.querySelector('.routine').remove();
+const progress=document.createElement('details');progress.id='mobileProgress';progress.innerHTML='<summary>Recall progress</summary>';
+document.querySelector('nav').after(progress);progress.append(document.querySelector('#stats'),document.querySelector('#levelProgress'));
+const help=document.createElement('details');help.innerHTML='<summary>Help & backups</summary>';
+document.querySelector('main').append(help);
+help.append(document.querySelector('.guide'),document.querySelector('footer'));
+document.querySelectorAll('.footnote').forEach(p=>help.append(p));
+help.insertAdjacentHTML('beforeend','<p id="creatorCredit" style="margin:20px 0 4px;padding-top:16px;border-top:1px solid #dbe3d2;text-align:center;font-size:12px;line-height:1.7;color:#65765d">A personal creation by<br><strong style="color:#2c533f;font-weight:600">Musawer Hussain Orakzai</strong></p>');
+document.querySelector('#creatorCredit').insertAdjacentHTML('beforebegin','<div style="margin-top:18px"><button id="githubUpdates">Check updates on GitHub</button><p class="footnote">Version 1.1.2 · Opens GitHub in your browser. Install updates over this app to keep your progress.</p></div>');
+document.querySelector('#githubUpdates').onclick=()=>AndroidBridge.openUpdates('https://github.com/Musawer1214/hsk-recall/releases/latest');
+document.querySelector('[data-view="practice"]').textContent='Recall';
+document.querySelector('[data-view="all"]').textContent='All words';
+document.querySelector('#listeningTab').textContent='Listen';
+document.querySelector('#listeningQuiz h2').textContent='Listening quiz';
+document.querySelector('#listeningQuiz > p').textContent='Listen. Choose the word and meaning.';
+document.querySelector('#quizNew').textContent='Start / new quiz';
+document.querySelector('#level option[value="all"]').textContent='All · HSK 3 focus';
+for(const l of ['1','2','3'])document.querySelector(`#level option[value="${l}"]`).textContent='HSK '+l;

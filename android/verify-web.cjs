@@ -1,0 +1,44 @@
+const assert=require('node:assert/strict'),http=require('http'),fs=require('fs'),path=require('path');
+const {chromium}=require('@playwright/test');
+const root=path.join(__dirname,'build-assets');fs.mkdirSync(path.join(__dirname,'release'),{recursive:true});
+const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?'index.html':req.url);if(!p.startsWith(root)||!fs.existsSync(p)){res.writeHead(404).end();return;}res.setHeader('Content-Type',p.endsWith('.js')?'application/javascript':p.endsWith('.css')?'text/css':p.endsWith('.mp3')?'audio/mpeg':'text/html');res.end(fs.readFileSync(p));});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const b=await chromium.launch({channel:'msedge',headless:true});try{
+ const page=await b.newPage({viewport:{width:412,height:892}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.addInitScript(()=>{const raw=Storage.prototype.setItem;window.AndroidBridge={load:k=>localStorage.getItem('native:'+k)||'',save(k,v){raw.call(localStorage,'native:'+k,v);return true;},exportJSON(v){window.exported=v;},importJSON(){},openUpdates(url){window.openedUpdates=url;}};});
+ await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>ready);await page.locator('#begin').click();
+ for(const l of ['1','2','3']){await page.selectOption('#level',l);assert(await page.evaluate(l=>state.session.queue.every(q=>byId.get(q.id).level===Number(l)),l));}
+ const w=await page.evaluate(()=>state.session.queue[0].id);await page.locator('#reveal').click();await page.locator('#listen').click();await page.waitForFunction(()=>HSKAudio.player?.currentTime>0);assert(await page.evaluate(()=>!HSKAudio.player.error));
+ await page.locator('[data-rate=again]').click();assert.equal(await page.evaluate(id=>JSON.parse(AndroidBridge.load(STORAGE_KEY)).words[id].status,w),'weak');
+ await page.reload();await page.waitForFunction(()=>ready);assert.equal(await page.evaluate(id=>state.words[id].status,w),'weak');
+ await page.locator('summary').filter({hasText:'Help & backups'}).click();await page.locator('#githubUpdates').click();assert.equal(await page.evaluate(()=>window.openedUpdates),'https://github.com/Musawer1214/hsk-recall/releases/latest');await page.locator('#export').click();assert.equal(await page.evaluate(id=>JSON.parse(window.exported).words[id].status,w),'weak');
+ const recallBefore=await page.evaluate(()=>JSON.stringify(state.words));
+ await page.locator('#listeningTab').click();await page.locator('#quizNew').click();
+ await page.waitForFunction(()=>state.listening.round.questions[0].played);
+ assert.equal(await page.locator('[data-choice=chinese]').count(),4);assert.equal(await page.locator('[data-choice=english]').count(),4);
+ assert(await page.locator('#quizCheck').isDisabled());
+ const q=await page.evaluate(()=>state.listening.round.questions[0]);
+ assert(await page.evaluate(()=>state.listening.round.questions.every(q=>byId.get(q.id).level===3)));
+ await page.locator(`[data-choice=chinese][data-id="${q.id}"]`).click();assert(await page.locator('#quizCheck').isDisabled());
+ await page.locator(`[data-choice=english][data-id="${q.english.find(id=>id!==q.id)}"]`).click();await page.locator('#quizCheck').click();
+ assert.equal(await page.evaluate(id=>state.listening.words[id].correct,q.id),0);
+ assert.equal(await page.evaluate(id=>state.listening.words[id].attempts,q.id),1);
+ assert(await page.locator('#quizCheck').isDisabled());
+ await page.reload();await page.waitForFunction(()=>ready);await page.locator('#listeningTab').click();
+ assert(await page.locator('#quizCheck').isDisabled());assert.equal(await page.evaluate(id=>state.listening.words[id].attempts,q.id),1);
+ await page.locator('#quizNext').click();await page.waitForFunction(()=>state.listening.round.questions[1].played);
+ const correct=await page.evaluate(()=>state.listening.round.questions[1].id);
+ for(const group of ['chinese','english'])await page.locator(`[data-choice=${group}][data-id="${correct}"]`).click();
+ await page.locator('#quizCheck').click();assert.equal(await page.evaluate(id=>state.listening.words[id].correct,correct),1);
+ assert.equal(await page.evaluate(()=>JSON.stringify(state.words)),recallBefore);
+ await page.locator('summary').filter({hasText:'Help & backups'}).click();await page.locator('#githubUpdates').click();assert.equal(await page.evaluate(()=>window.openedUpdates),'https://github.com/Musawer1214/hsk-recall/releases/latest');await page.locator('#export').click();assert.equal(await page.evaluate(id=>JSON.parse(window.exported).listening.words[id].correct,correct),1);
+ await page.screenshot({path:path.join(__dirname,'release/listening-quiz.png'),fullPage:true});
+ for(const level of ['1','2','3','all']){await page.selectOption('#quizLevel',level);await page.locator('#quizNew').click();assert(await page.evaluate(l=>state.listening.round.questions.every(q=>l==='all'||byId.get(q.id).level===Number(l)),level));}
+ await page.evaluate(()=>{const r=state.listening.round;r.index=19;});await page.locator('#listeningTab').click();await page.locator('#quizPlay').click();
+ await page.waitForFunction(()=>state.listening.round.questions[19].played);
+ const last=await page.evaluate(()=>state.listening.round.questions[19].id);
+ for(const group of ['chinese','english'])await page.locator(`[data-choice=${group}][data-id="${last}"]`).click();
+ await page.locator('#quizCheck').click();await page.locator('#quizNext').click();assert(await page.locator('#quizCard').innerText().then(t=>t.includes('Quiz complete')));
+ console.log('PASS listening quiz: audio, 4+4 options, both required, independent marking, duplicate protection, reload, backup, level filters, completion, recall unchanged.');
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ await page.screenshot({path:path.join(__dirname,'release/android-layout-preview.png'),fullPage:true});assert.deepEqual(errors,[]);console.log('PASS packaged frontend: Android storage adapter, HSK level changes, actual offline MP3 playback, reload, export and 412px layout. Native integration tested separately.');
+ }finally{await b.close();server.close();}})().catch(e=>{console.error(e);server.close();process.exit(1)});
