@@ -26,7 +26,23 @@ public class RecallTests extends Instrumentation {
   try{
    Intent intent=new Intent(Intent.ACTION_MAIN);intent.setClassName("com.musaw.hskrecall","com.musaw.hskrecall.MainActivity");intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
    activity=startActivitySync(intent);web=(WebView)activity.findViewById(12345);waitFor("typeof ready!=='undefined'&&ready");
-   if("listening".equals(args.getString("phase"))){
+   if("full".equals(args.getString("phase"))){
+     js("window.previousListening=JSON.stringify(state.listening);");
+     for(String level:new String[]{"1","2","3"}){
+      js("$('#roundMode').value='"+level+"';createRound();");
+      check("full level "+level+" count and uniqueness","state.session.queue.length==="+(level.equals("3")?300:150)+"&&new Set(state.session.queue.map(q=>q.id)).size===state.session.queue.length&&state.session.queue.every(q=>byId.get(q.id).level==="+level+")");
+     }
+     js("window.fullMiss=state.session.queue[0].id;revealed=true;rate('again');for(let i=0;i<44;i++){revealed=true;rate('good');}");
+     check("miss set aside without requeue","state.words[fullMiss].status==='weak'&&!state.session.queue.some(q=>q.id===fullMiss)&&state.session.failures[fullMiss]===1");
+     check("full round extends beyond 40","state.session.attempts===45&&state.session.queue.length===255");
+     check("native save contains full round","JSON.parse(AndroidBridge.load(STORAGE_KEY)).session.mode==='full'&&JSON.parse(AndroidBridge.load(STORAGE_KEY)).session.queue.length===255");
+     check("listening unchanged","JSON.stringify(state.listening)===previousListening");
+     Thread.sleep(600);screenshot("android16-full-deck.png");
+    }else if("fullResume".equals(args.getString("phase"))){
+     check("full round survives process stop","state.session.mode==='full'&&state.session.attempts===45&&state.session.queue.length===255");
+     check("full selector restored","$('#roundMode').value==='3'");
+     check("set aside survives process stop","Object.keys(state.session.failures).length===1&&Object.keys(state.session.failures).every(id=>state.words[id].status==='weak')");
+    }else if("listening".equals(args.getString("phase"))){
      runOnMainSync(()->web.getSettings().setMediaPlaybackRequiresUserGesture(false));
      js("window.recallBefore=JSON.stringify(state.words);");click("#listeningTab");click("#quizNew");waitFor("state.listening.round.questions[0].played");
      check("offline quiz audio plays","HSKAudio.player.currentTime>0&&!HSKAudio.player.error");

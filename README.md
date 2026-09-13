@@ -4,6 +4,10 @@ A personal creation by **Musawer Hussain Orakzai**.
 
 An offline Android app for recalling all 600 vocabulary words in classic HSK 1–3 (not HSK 3.0).
 
+## Full-deck review
+
+In Recall, choose **Round → Full HSK 1 (150), Full HSK 2 (150), or Full HSK 3 (300)**. Every word appears once in random order, including previously secure words. Missed and hesitant words are set aside and saved to your weak list. Unfinished decks resume after closing the app. Focused 20-word practice is still available.
+
 ## Features
 
 - Chinese word recall with pinyin and English; extra HSK 3 practice in mixed rounds.

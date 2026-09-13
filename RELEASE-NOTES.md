@@ -1,12 +1,9 @@
-HSK Recall 1.1.2 — a personal creation by Musawer Hussain Orakzai.
+HSK Recall 1.2.0 — full-deck review.
 
-Download **HSK-Recall-1.1.2.apk** below. Install over your existing official app to retain progress. Do not uninstall first; export a backup for an extra copy.
+In **Recall → Round**, choose Full HSK 1 (150 words), Full HSK 2 (150), or Full HSK 3 (300). Each deck includes all words in shuffled order, with misses and hesitant words set aside for later. Full decks resume across app restarts. Existing focused practice and listening quizzes remain available.
 
-- All 600 classic HSK 1–3 words with offline pronunciation.
-- Word recall, saved weak words, level progress and a listening quiz with Chinese and English choices.
-- Compact mobile layout and creator credit.
-- New: Help & backups → Check updates on GitHub.
+Install **HSK-Recall-1.2.0.apk** over the existing official app to keep progress. Do not uninstall first. Export a backup for an extra copy.
 
-Phone progress is independent from laptop progress. The update button opens your browser; there is no automatic update download or background progress upload.
+Tested with packaged frontend regression tests and Android 16 emulator tests for full-deck counts, saved misses, long-round persistence and preserving listening history. Physical Samsung hardware remains untested by the tooling.
 
-Requires Android 9 or later. Core app tested on an Android 16 emulator; physical Samsung testing remains unverified. Browser regression checks passed for this release. Audio is synthesized Mandarin, not official exam audio.
+A personal creation by Musawer Hussain Orakzai.

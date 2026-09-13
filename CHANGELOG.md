@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Full shuffled HSK 1/2/3 reviews: 150, 150 and 300 words.
+- Set missed and hesitant words aside without interrupting the full deck.
+- Resume full decks beyond 40 answers; retain existing recall and listening history.
+
 ## 1.1.2
 
 - Public GitHub repository and APK releases.

@@ -20,12 +20,12 @@ function normalize(input){
   output.words[id]={status,streak:Math.max(0,Math.min(3,Number(v.streak)||0)),reviews:Math.max(0,Number(v.reviews)||0),lapses:Math.max(0,Number(v.lapses)||0),lastSeen:Number(v.lastSeen)||0,lastRating:['good','hard','again'].includes(v.lastRating)?v.lastRating:'good',lastSuccessRound:String(v.lastSuccessRound||''),lastResponseMs:Math.max(0,Number(v.lastResponseMs)||0)};
  }
  const s=input.session;
- if(s&&typeof s.id==='string'&&Array.isArray(s.queue)&&s.queue.length<=100&&Number(s.attempts)<40){
+ if(s&&typeof s.id==='string'&&Array.isArray(s.queue)&&s.queue.length<=(s.mode==='full'?300:100)&&Number(s.attempts)<(s.mode==='full'?300:40)){
   const cleanMap=obj=>Object.fromEntries(Object.entries(obj||{}).filter(([k,v])=>byId.has(k)&&Number.isFinite(Number(v))).map(([k,v])=>[k,Number(v)]));
-  output.session={id:s.id,queue:s.queue.filter(q=>q&&byId.has(q.id)).map(q=>({id:q.id,kind:['warmup','focus','repeat'].includes(q.kind)?q.kind:'focus'})),attempts:Math.max(0,Number(s.attempts)||0),counts:{good:Math.max(0,Number(s.counts?.good)||0),hard:Math.max(0,Number(s.counts?.hard)||0),again:Math.max(0,Number(s.counts?.again)||0)},retryCounts:cleanMap(s.retryCounts),failures:cleanMap(s.failures),level:['1','2','3','all'].includes(s.level)?s.level:'all'};
+  output.session={id:s.id,queue:s.queue.filter(q=>q&&byId.has(q.id)).map(q=>({id:q.id,kind:['warmup','focus','repeat'].includes(q.kind)?q.kind:'focus'})),attempts:Math.max(0,Number(s.attempts)||0),counts:{good:Math.max(0,Number(s.counts?.good)||0),hard:Math.max(0,Number(s.counts?.hard)||0),again:Math.max(0,Number(s.counts?.again)||0)},retryCounts:cleanMap(s.retryCounts),failures:cleanMap(s.failures),level:['1','2','3','all'].includes(s.level)?s.level:'all',...(s.mode==='full'?{mode:'full'}:{})};
   if(!output.session.queue.length)output.session=null;
  }
- if(input.summary&&typeof input.summary==='object')output.summary={good:Number(input.summary.good)||0,hard:Number(input.summary.hard)||0,again:Number(input.summary.again)||0};
+ if(input.summary&&typeof input.summary==='object')output.summary={good:Number(input.summary.good)||0,hard:Number(input.summary.hard)||0,again:Number(input.summary.again)||0,...(input.summary.mode==='full'?{mode:'full',level:String(input.summary.level),failures:Object.fromEntries(Object.entries(input.summary.failures||{}).filter(([id])=>byId.has(id)))}:{})};
  return output;
 }
 function migrate(old){
@@ -63,6 +63,8 @@ function choose(pool,level,weakPreferred=false){
 }
 function createRound(onlyWeak=false,oneId=null){
  if(!ready)return;
+ if(!onlyWeak&&!oneId&&$('#roundMode').value!=='quick'){createFullRound($('#roundMode').value);return;}
+ $('#roundMode').value='quick';$('#level').disabled=false;$('#includeSecure').disabled=false;
  const level=$('#level').value;
  let pool=WORDS.filter(w=>(level==='all'||w.level===Number(level))&&(!onlyWeak||isWeak(w.id))&&($('#includeSecure').checked||state.words[w.id]?.status!=='secure'));
  if(oneId)pool=byId.has(oneId)?[byId.get(oneId)]:[];
@@ -80,6 +82,13 @@ function createRound(onlyWeak=false,oneId=null){
  state.session=queue.length?{id:Date.now()+'-'+Math.random().toString(36).slice(2),queue,attempts:0,counts:{good:0,hard:0,again:0},retryCounts:{},failures:{},level}:null;
  state.summary=null;recallFeedback='';revealed=false;started=performance.now();view='practice';save();render();
 }
+function createFullRound(level){
+ if(!ready||!['1','2','3'].includes(level))return;
+ const queue=shuffle(WORDS.filter(w=>w.level===Number(level))).map(w=>({id:w.id,kind:'focus'}));
+ $('#level').value=level;
+ state.session={id:Date.now()+'-'+Math.random().toString(36).slice(2),mode:'full',queue,attempts:0,counts:{good:0,hard:0,again:0},retryCounts:{},failures:{},level};
+ state.summary=null;recallFeedback='';revealed=false;started=performance.now();view='practice';save();render();
+}
 function rate(rating){
  const s=state.session;if(!s||!revealed||!['good','hard','again'].includes(rating))return;
  const {id}=s.queue.shift();const old=state.words[id]||{status:'steady',streak:0,reviews:0,lapses:0,lastSuccessRound:''};
@@ -89,12 +98,12 @@ function rate(rating){
   next.status=next.streak>=3?'secure':old.status==='weak'?'weak':'steady';
  }else{
   next.status='weak';next.streak=0;next.lapses=old.lapses+1;s.failures[id]=1;
-  if((s.retryCounts[id]||0)<2&&s.attempts<39){s.queue.splice(Math.min(rating==='again'?3:5,s.queue.length),0,{id,kind:'repeat'});s.retryCounts[id]=(s.retryCounts[id]||0)+1;}
+  if(s.mode!=='full'&&(s.retryCounts[id]||0)<2&&s.attempts<39){s.queue.splice(Math.min(rating==='again'?3:5,s.queue.length),0,{id,kind:'repeat'});s.retryCounts[id]=(s.retryCounts[id]||0)+1;}
  }
  const gained=next.streak-(old.streak||0);
  recallFeedback=rating==='good'?(gained>0?`Saved: HSK ${byId.get(id).level} recall progress +1. This word is now ${next.streak}/3${next.status==='secure'?' — Secure.':'.'}`:next.status==='secure'?'Saved: this word is already Secure.':'Saved as practice. A retry after a miss in this round does not add a confident-round step; try it in a new round.'):'Saved to your weak list. This word’s confident-round steps restart at 0.';
  state.words[id]=next;s.attempts++;s.counts[rating]++;
- if(!s.queue.length||s.attempts>=40){state.summary={...s.counts};state.session=null;}
+ if(!s.queue.length||(s.mode!=='full'&&s.attempts>=40)){state.summary={...s.counts,...(s.mode==='full'?{mode:'full',level:s.level,failures:{...s.failures}}:{})};state.session=null;}
  revealed=false;started=performance.now();save();render();
 }
 function completionByLevel(){return [1,2,3].map(level=>{
@@ -104,6 +113,11 @@ function completionByLevel(){return [1,2,3].map(level=>{
 });}
 function render(){
  clearInterval(clock);if('speechSynthesis' in window)speechSynthesis.cancel();
+ const full=state.session?.mode==='full'||(!state.session&&state.summary?.mode==='full');
+ $('#level').disabled=$('#roundMode').value!=='quick';$('#includeSecure').disabled=$('#roundMode').value!=='quick';
+ const setAside=full?Object.keys((state.session||state.summary).failures||{}):[];
+ $('#setAside').hidden=!full;$('#setAside').innerHTML=full?`<details ${!state.session?'open':''}><summary>Set aside this deck: ${setAside.length} words</summary><p class="muted">Missed or hesitant words are also saved in your permanent weak list.</p><div class="aside-words">${setAside.map(id=>`<span>${esc(byId.get(id).hanzi)} · ${esc(byId.get(id).pinyin)}</span>`).join('')||'None so far.'}</div><button id="reviewSetAside" ${setAside.length?'':'disabled'}>Open weak words</button></details>`:'';
+ if($('#reviewSetAside'))$('#reviewSetAside').onclick=()=>{$('#libraryLevel').value=(state.session||state.summary).level;view='weak';render();};
  const reviewed=Object.keys(state.words).length,weak=weakCount(),secure=WORDS.filter(w=>state.words[w.id]?.status==='secure').length;
  $('#stats').innerHTML=`<div class="stat"><strong>${reviewed}<small> / 600</small></strong><span>Words checked</span></div><div class="stat"><strong>${weak}</strong><span>In your weak list</span></div><div class="stat"><strong>${secure}</strong><span>Secure recall</span></div>`;$('#weakCount').textContent=weak;
  $('#levelProgress').innerHTML=completionByLevel().map(l=>`<div class="level-card"><strong>HSK ${l.level} ${l.remaining===0?'✓ Complete':''}</strong><span>Practised: ${l.checked} / ${l.total}</span><progress value="${l.checked}" max="${l.total}" aria-label="HSK ${l.level} practised"></progress><span>Recall progress: ${l.recallSteps} / ${l.totalSteps} steps</span><progress value="${l.recallSteps}" max="${l.totalSteps}" aria-label="HSK ${l.level} recall progress"></progress><small>${l.completed} Secure · ${l.remaining} not yet Secure<br>${l.total-l.checked} not checked</small></div>`).join('');
@@ -114,7 +128,7 @@ function render(){
  const s=state.session;
  if(!s){const summary=state.summary;$('#card').innerHTML=`<div class="empty"><div class="eyebrow">${summary?'ROUND COMPLETE':'YOUR RECALL PRACTICE'}</div><h2>${summary?'Progress kept. Weak words saved.':(completionByLevel().filter(l=>$('#level').value==='all'||l.level===Number($('#level').value)).every(l=>l.remaining===0)?'Selected deck complete.':'Start familiar. Work on what slips.')}</h2>${summary?`<div class="round-summary"><div><strong>${summary.good}</strong><span>Knew it</span></div><div><strong>${summary.hard}</strong><span>Hesitated</span></div><div><strong>${summary.again}</strong><span>Missed</span></div></div>`:'<p class="muted">20 starting cards · extra HSK 3 focus · saved across sessions</p>'}<button id="begin" class="primary">${summary?'Start another round':'Start recall'}</button>${weak?'<p><button id="beginWeak">Practise only weak words ('+weak+')</button></p>':''}</div>`;$('#begin').onclick=()=>createRound();if($('#beginWeak'))$('#beginWeak').onclick=()=>createRound(true);return;}
  const entry=s.queue[0],w=byId.get(entry.id),h=state.words[w.id];
- $('#card').innerHTML=`<div class="card-top"><span>${entry.kind==='warmup'?'WARM-UP':entry.kind==='repeat'?'TRY IT AGAIN':'FOCUS'} · HSK ${w.level}</span><span>${s.attempts} answered · ${s.queue.length} queued</span></div><div class="hanzi" lang="zh-CN">${esc(w.hanzi)}</div><div id="pace" class="recall-time">Recall the sound and meaning before checking.</div>${revealed?`<div class="answer"><p class="pinyin">${esc(w.pinyin)}</p><p>${esc(w.english)}</p></div><button id="listen" class="small">Listen to pronunciation</button><p id="audioStatus" class="muted" role="status"></p><p class="muted">How was your recall before checking?</p><div class="rating"><button data-rate="again">Missed</button><button data-rate="hard">Hesitated</button><button data-rate="good" class="primary">Knew it</button></div>`:'<button id="reveal" class="primary wide">Check pinyin & meaning</button>'}<p class="muted">${h?.status==='weak'?`Saved weak word · ${h.streak}/3 confident rounds toward Secure.`:h?.status==='secure'?'Completed — you chose to review this word.':'Hesitated or missed? It will stay in your weak list until recall is secure.'}</p>`;
+ $('#card').innerHTML=`<div class="card-top"><span>${s.mode==='full'?'FULL DECK':entry.kind==='warmup'?'WARM-UP':entry.kind==='repeat'?'TRY IT AGAIN':'FOCUS'} · HSK ${w.level}</span><span>${s.attempts} answered · ${s.queue.length} queued</span></div><div class="hanzi" lang="zh-CN">${esc(w.hanzi)}</div><div id="pace" class="recall-time">Recall the sound and meaning before checking.</div>${revealed?`<div class="answer"><p class="pinyin">${esc(w.pinyin)}</p><p>${esc(w.english)}</p></div><button id="listen" class="small">Listen to pronunciation</button><p id="audioStatus" class="muted" role="status"></p><p class="muted">How was your recall before checking?</p><div class="rating"><button data-rate="again">Missed</button><button data-rate="hard">Hesitated</button><button data-rate="good" class="primary">Knew it</button></div>`:'<button id="reveal" class="primary wide">Check pinyin & meaning</button>'}<p class="muted">${h?.status==='weak'?`Saved weak word · ${h.streak}/3 confident rounds toward Secure.`:h?.status==='secure'?'Completed — you chose to review this word.':'Hesitated or missed? It will stay in your weak list until recall is secure.'}</p>`;
  if($('#reveal'))$('#reveal').onclick=()=>{revealed=true;render();};
  document.querySelectorAll('[data-rate]').forEach(b=>b.onclick=()=>rate(b.dataset.rate));
  if($('#listen'))$('#listen').onclick=()=>{
@@ -141,11 +155,12 @@ async function boot(){
  if(window.HSK_SERVER){disk=window.HSK_SERVER;try{const response=await api('/api/state');if(!response.ok)throw Error();const result=await response.json();diskRevision=result.revision;
   if(result.state){const remote=normalize(result.state);state=remote;for(const [id,h] of Object.entries(local.words))if(!state.words[id])state.words[id]=h;}
  }catch{disk=null;}}
- ready=true;if(state.session)$('#level').value=state.session.level;
+ ready=true;if(state.session){$('#level').value=state.session.level;$('#roundMode').value=state.session.mode==='full'?state.session.level:'quick';}else if(state.summary?.mode==='full'){$('#roundMode').value=state.summary.level;$('#level').value=state.summary.level;}
  $('#storageNote').textContent=disk?'Automatic disk saving is active. Export a backup to keep a separate copy or move devices.':'Browser-only saving. Double-click Start_HSK_Recall.bat for automatic disk backups. Export before clearing browser data.';
  save();render();
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(!ready)return;view=b.dataset.view;pageSize=40;render();});
+$('#roundMode').onchange=()=>createRound();
 $('#start').onclick=()=>createRound();$('#includeSecure').onchange=()=>{$('#saveStatus').textContent='Completed-word preference applies to your next round.';};$('#level').onchange=()=>createRound();
 $('#practiseWeak').onclick=()=>{$('#level').value=$('#libraryLevel').value;createRound(true);};
 $('#search').oninput=()=>{pageSize=40;renderLibrary();};$('#libraryLevel').onchange=()=>{pageSize=40;renderLibrary();};$('#showMore').onclick=()=>{pageSize+=40;renderLibrary();};

@@ -38,6 +38,25 @@ const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?
  const last=await page.evaluate(()=>state.listening.round.questions[19].id);
  for(const group of ['chinese','english'])await page.locator(`[data-choice=${group}][data-id="${last}"]`).click();
  await page.locator('#quizCheck').click();await page.locator('#quizNext').click();assert(await page.locator('#quizCard').innerText().then(t=>t.includes('Quiz complete')));
+ await page.locator('[data-view=practice]').click();
+ const listeningBefore=await page.evaluate(()=>JSON.stringify(state.listening));
+ for(const [level,total] of [['1',150],['2',150],['3',300]]){
+  await page.selectOption('#roundMode',level);
+  assert(await page.evaluate(([l,n])=>state.session.queue.length===n&&new Set(state.session.queue.map(q=>q.id)).size===n&&state.session.queue.every(q=>byId.get(q.id).level===Number(l)),[level,total]));
+  const missed=await page.evaluate(()=>state.session.queue[0].id);
+  await page.locator('#reveal').click();await page.locator('[data-rate=again]').click();
+  assert(await page.evaluate(id=>!state.session.queue.some(q=>q.id===id)&&state.words[id].status==='weak',missed));
+  await page.evaluate(()=>{for(let i=0;i<44;i++){revealed=true;rate('good');}});
+  await page.reload();await page.waitForFunction(()=>ready);
+  assert.equal(await page.evaluate(()=>state.session.attempts),45);assert.equal(await page.evaluate(()=>state.session.queue.length),total-45);
+  await page.evaluate(()=>{while(state.session){revealed=true;rate('good');}});
+  assert.equal(await page.evaluate(()=>state.summary.good),total-1);
+  assert(await page.evaluate(id=>state.summary.failures[id]&&state.words[id].status==='weak',missed));
+ }
+ assert.equal(await page.evaluate(()=>JSON.stringify(state.listening)),listeningBefore);
+ await page.selectOption('#roundMode','1');await page.screenshot({path:path.join(__dirname,'release/full-deck-mobile.png'),fullPage:true});
+ await page.selectOption('#roundMode','quick');assert(await page.evaluate(()=>state.session.mode!=='full'));
+ console.log('PASS full APK decks: 150/150/300 unique words, misses set aside, native-adapter reload after 45 answers, completion, listening progress unchanged.');
  console.log('PASS listening quiz: audio, 4+4 options, both required, independent marking, duplicate protection, reload, backup, level filters, completion, recall unchanged.');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await page.screenshot({path:path.join(__dirname,'release/android-layout-preview.png'),fullPage:true});assert.deepEqual(errors,[]);console.log('PASS packaged frontend: Android storage adapter, HSK level changes, actual offline MP3 playback, reload, export and 412px layout. Native integration tested separately.');
