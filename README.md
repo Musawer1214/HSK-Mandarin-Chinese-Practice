@@ -1,57 +1,90 @@
 # HSK Recall
 
-A personal creation by **Musawer Hussain Orakzai**.
+Build faster Chinese word recall with focused practice, full-deck reviews, and offline listening quizzes. HSK Recall is an Android app with **1,200 vocabulary entries across classic HSK 1–4**, bundled Mandarin audio, and progress that stays on your device.
 
-An offline Android app for recalling 1,200 vocabulary entries in classic HSK 1–4 (not HSK 3.0).
+[Download the latest APK](https://github.com/Musawer1214/HSK-Mandarin-Chinese-Practice/releases/latest)
 
-## Full-deck review
+## Practice modes
 
-In Recall, choose **Round → Full HSK 1 (150), Full HSK 2 (150), Full HSK 3 (300), or Full HSK 4 (600)**. Every word appears once in random order, including previously secure words. Missed and hesitant words are set aside and saved to your weak list. Unfinished decks resume after closing the app. Focused 20-word practice is still available.
+- **Focused recall:** practise 20 words, reveal pinyin and English, then rate your recall. Mixed rounds emphasize HSK 4.
+- **Full-deck review:** see every word in a level once, in shuffled order. Unfinished rounds resume when you reopen the app.
+- **Weak-word practice:** hesitant and missed words stay available for targeted review. Three confident recalls in separate rounds move a word to Secure.
+- **Listening quizzes:** hear a word, then choose its Chinese form and English meaning. Listening history is tracked separately from recall.
+- **Vocabulary library:** filter by level and search Chinese, pinyin, or English.
 
-## Features
+| Deck | Entries |
+| --- | ---: |
+| HSK 1 | 150 |
+| HSK 2 | 150 |
+| HSK 3 | 300 |
+| HSK 4 | 600 |
+| **Total** | **1,200** |
 
-- Chinese word recall with pinyin and English; extra HSK 4 practice in mixed rounds.
-- Persistent weak words, unfinished rounds and per-level progress.
-- Listening quiz: audio with four Chinese choices and four English meaning choices.
-- Separate listening history prioritizes words needing practice.
-- Compact mobile layout, bundled pronunciation and JSON backup import/export.
+These are vocabulary entries, including multi-character words and level-specific meanings. The deck follows the classic syllabus, not HSK 3.0.
 
 ## Install and update
 
-Download the APK from [GitHub Releases](https://github.com/Musawer1214/HSK-Mandarin-Chinese-Practice/releases/latest) and open it on your Android phone.
+1. Download the APK from [Releases](https://github.com/Musawer1214/HSK-Mandarin-Chinese-Practice/releases/latest).
+2. Open it on an Android 9 or newer device and allow installation from your chosen browser or file manager if prompted.
+3. For updates, install the new APK over the existing app to retain progress. Do not uninstall first.
 
-For updates, check GitHub Releases or use **Help & backups → Check updates on GitHub** in the app. Install official updates over your existing app; do not uninstall first. Export a backup for an extra copy.
+The app's **Help & backups → Check updates on GitHub** button opens the release page. Practice and pronunciation work offline; checking for updates requires Internet access.
 
-The update link opens GitHub in your browser and needs Internet. It does not automatically download or install updates. Practice and audio remain offline.
+## Local progress and backups
 
-## Progress and privacy
+Recall ratings, weak words, listening history, and unfinished rounds are saved on the phone. Progress is not uploaded to GitHub or synchronized with the laptop app.
 
-Progress is stored privately on your phone, separately from the laptop app. It is not uploaded to GitHub. Uninstalling or clearing app data removes it: export first.
+Use **Help & backups** to export or import a JSON backup. Imports merge ratings while preserving newer records. Export before uninstalling or clearing app data.
+
+## Project structure
+
+| Path | Purpose |
+| --- | --- |
+| `web/` | Shared recall interface and HSK 1–3 vocabulary |
+| `android/app/` | Native Android shell, resources, and bundled audio |
+| `android/hsk4.cjs` | HSK 4 vocabulary extension and interface integration |
+| `android/vocabulary/` | Source data, official-list comparison, and corrections |
+| `android/listening.js` | Listening quiz and independent scoring |
+| `android/prepare-assets.cjs` | Packages the shared interface for Android |
+| `android/tests/` | Native instrumentation tests |
 
 ## Build from source
 
-`web/` contains the shared recall interface and vocabulary. `android/` contains the native Android shell, listening quiz, mobile layout, packaging scripts and 1,200 word recordings.
+The build scripts target Windows and require Node.js, Python 3, JDK 17, Android SDK platform 36, and Android build tools 35.0.0. Place the tools beneath `android/toolchain/`:
 
-The build script targets Windows with Node.js, Python 3, JDK 17, Android SDK platform 36 and build tools 35.0.0. Install official tools into these local directories beneath `android/toolchain/`:
+```text
+jdk/jdk-*/
+packages/build-tools_35.0.0/android-15/
+packages/platforms_android-36/   # contains android.jar
+```
 
-- `jdk/jdk-*/` — JDK 17
-- `packages/build-tools_35.0.0/android-15/` — build tools 35.0.0
-- `packages/platforms_android-36/` — a directory containing `android.jar`
+Build the APK:
 
-Run `python android/build.py`. Output is written to `android/release/`. First build creates a private local signing key; keep it safe. A self-built APK cannot update the official app unless it uses the same signing key. SDKs, keys and personal progress are excluded from this repository.
+```powershell
+python android/build.py
+```
 
-For browser regression tests on Windows with Edge installed: run `npm install`, then `npm test`. Native instrumentation source is included under `android/tests/`; `python android/build-tests.py` builds it after the app build.
+The signed APK is written to `android/release/`. The first build creates a local signing key. Keep that key for compatible updates; a different key cannot update an existing installation. Toolchains, signing keys, generated builds, and saved progress are excluded from the repository.
 
-## Testing and attribution
+## Validation
 
-Version 1.3.1 passes packaged browser integration tests for all four decks, offline audio, quiz scoring, filters, saved progress, backups, and HSK 4 round reload after 345 answers. Native emulator tests were run for earlier releases; version 1.3.1 has not been tested on an emulator or physical phone. See [validation details](android/VALIDATION-1.3.1.md).
+Run the vocabulary and packaged interface checks on Windows with Microsoft Edge installed:
 
-Audio is synthesized Mandarin using Microsoft Huihui, not official exam recordings. This independent app is not affiliated with the HSK examination provider. Vocabulary and pronunciation have not received a complete linguistic audit.
+```powershell
+npm ci
+npm test
+```
 
-## HSK 4 vocabulary
+Validate the built APK and audio files with FFprobe available on your PATH:
 
-HSK 4 adds 600 entries, checked against entries 601–1200 in the [official classic vocabulary list](https://www.chinesetest.cn/userfiles/file/cihui.pdf). Words can contain multiple characters. HSK 4 level-specific meanings are retained even when a character appeared earlier. See [sources and corrections](android/vocabulary/README.md). This is the classic syllabus, not HSK 3.0.
+```powershell
+python android/verify-package.py
+```
 
-## Ownership
+Version 1.3.1 checks cover all four decks, offline playback, quiz scoring, saved progress, backup export, mobile layout, and resuming HSK 4 after 345 answers. This version has not been tested on an emulator or physical phone. See [validation details](android/VALIDATION-1.3.1.md).
 
-Created by Musawer Hussain Orakzai. No open-source license is granted. Publishing this source does not waive applicable copyrights; third-party material remains subject to its own rights.
+## Vocabulary and audio
+
+All 600 HSK 4 headwords match entries 601–1200 in the [official classic vocabulary list](https://www.chinesetest.cn/userfiles/file/cihui.pdf). See [vocabulary sources and corrections](android/vocabulary/README.md) for the comparison method and third-party data license.
+
+Pronunciation is synthesized Mandarin using Microsoft Huihui. Headword coverage is verified; English definitions and individual audio pronunciations have not received an exhaustive linguistic audit.
