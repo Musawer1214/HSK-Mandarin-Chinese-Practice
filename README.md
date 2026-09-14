@@ -18,7 +18,7 @@ In Recall, choose **Round → Full HSK 1 (150), Full HSK 2 (150), Full HSK 3 (30
 
 ## Install and update
 
-Download the APK from [GitHub Releases](https://github.com/Musawer1214/hsk-recall/releases/latest) and open it on your Android phone.
+Download the APK from [GitHub Releases](https://github.com/Musawer1214/HSK-Mandarin-Chinese-Practice/releases/latest) and open it on your Android phone.
 
 For updates, check GitHub Releases or use **Help & backups → Check updates on GitHub** in the app. Install official updates over your existing app; do not uninstall first. Export a backup for an extra copy.
 
