@@ -6,7 +6,7 @@ const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?
  const page=await b.newPage({viewport:{width:412,height:892}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(()=>{const raw=Storage.prototype.setItem;window.AndroidBridge={load:k=>localStorage.getItem('native:'+k)||'',save(k,v){raw.call(localStorage,'native:'+k,v);return true;},exportJSON(v){window.exported=v;},importJSON(){},openUpdates(url){window.openedUpdates=url;}};});
  await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>ready);await page.locator('#begin').click();
- for(const l of ['1','2','3']){await page.selectOption('#level',l);assert(await page.evaluate(l=>state.session.queue.every(q=>byId.get(q.id).level===Number(l)),l));}
+ for(const l of ['1','2','3','4']){await page.selectOption('#level',l);assert(await page.evaluate(l=>state.session.queue.every(q=>byId.get(q.id).level===Number(l)),l));}
  const w=await page.evaluate(()=>state.session.queue[0].id);await page.locator('#reveal').click();await page.locator('#listen').click();await page.waitForFunction(()=>HSKAudio.player?.currentTime>0);assert(await page.evaluate(()=>!HSKAudio.player.error));
  await page.locator('[data-rate=again]').click();assert.equal(await page.evaluate(id=>JSON.parse(AndroidBridge.load(STORAGE_KEY)).words[id].status,w),'weak');
  await page.reload();await page.waitForFunction(()=>ready);assert.equal(await page.evaluate(id=>state.words[id].status,w),'weak');
@@ -32,7 +32,8 @@ const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?
  assert.equal(await page.evaluate(()=>JSON.stringify(state.words)),recallBefore);
  await page.locator('summary').filter({hasText:'Help & backups'}).click();await page.locator('#githubUpdates').click();assert.equal(await page.evaluate(()=>window.openedUpdates),'https://github.com/Musawer1214/hsk-recall/releases/latest');await page.locator('#export').click();assert.equal(await page.evaluate(id=>JSON.parse(window.exported).listening.words[id].correct,correct),1);
  await page.screenshot({path:path.join(__dirname,'release/listening-quiz.png'),fullPage:true});
- for(const level of ['1','2','3','all']){await page.selectOption('#quizLevel',level);await page.locator('#quizNew').click();assert(await page.evaluate(l=>state.listening.round.questions.every(q=>l==='all'||byId.get(q.id).level===Number(l)),level));}
+ for(const level of ['1','2','3','4','all']){await page.selectOption('#quizLevel',level);await page.locator('#quizNew').click();assert(await page.evaluate(l=>state.listening.round.questions.every(q=>l==='all'||byId.get(q.id).level===Number(l)),level));}
+ await page.selectOption('#quizLevel','4');await page.locator('#quizNew').click();await page.waitForFunction(()=>state.listening.round.questions[0].played);await page.reload();await page.waitForFunction(()=>ready);await page.locator('#listeningTab').click();assert.equal(await page.locator('#quizLevel').inputValue(),'4');
  await page.evaluate(()=>{const r=state.listening.round;r.index=19;});await page.locator('#listeningTab').click();await page.locator('#quizPlay').click();
  await page.waitForFunction(()=>state.listening.round.questions[19].played);
  const last=await page.evaluate(()=>state.listening.round.questions[19].id);
@@ -40,7 +41,7 @@ const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?
  await page.locator('#quizCheck').click();await page.locator('#quizNext').click();assert(await page.locator('#quizCard').innerText().then(t=>t.includes('Quiz complete')));
  await page.locator('[data-view=practice]').click();
  const listeningBefore=await page.evaluate(()=>JSON.stringify(state.listening));
- for(const [level,total] of [['1',150],['2',150],['3',300]]){
+ for(const [level,total] of [['1',150],['2',150],['3',300],['4',600]]){
   await page.selectOption('#roundMode',level);
   assert(await page.evaluate(([l,n])=>state.session.queue.length===n&&new Set(state.session.queue.map(q=>q.id)).size===n&&state.session.queue.every(q=>byId.get(q.id).level===Number(l)),[level,total]));
   const missed=await page.evaluate(()=>state.session.queue[0].id);
@@ -49,6 +50,7 @@ const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?
   await page.evaluate(()=>{for(let i=0;i<44;i++){revealed=true;rate('good');}});
   await page.reload();await page.waitForFunction(()=>ready);
   assert.equal(await page.evaluate(()=>state.session.attempts),45);assert.equal(await page.evaluate(()=>state.session.queue.length),total-45);
+  if(level==='4'){await page.evaluate(()=>{for(let i=0;i<300;i++){revealed=true;rate('good');}});await page.reload();await page.waitForFunction(()=>ready);assert.equal(await page.evaluate(()=>state.session.attempts),345);}
   await page.evaluate(()=>{while(state.session){revealed=true;rate('good');}});
   assert.equal(await page.evaluate(()=>state.summary.good),total-1);
   assert(await page.evaluate(id=>state.summary.failures[id]&&state.words[id].status==='weak',missed));
@@ -56,7 +58,7 @@ const server=http.createServer((req,res)=>{const p=path.join(root,req.url==='/'?
  assert.equal(await page.evaluate(()=>JSON.stringify(state.listening)),listeningBefore);
  await page.selectOption('#roundMode','1');await page.screenshot({path:path.join(__dirname,'release/full-deck-mobile.png'),fullPage:true});
  await page.selectOption('#roundMode','quick');assert(await page.evaluate(()=>state.session.mode!=='full'));
- console.log('PASS full APK decks: 150/150/300 unique words, misses set aside, native-adapter reload after 45 answers, completion, listening progress unchanged.');
+ console.log('PASS full APK decks: 150/150/300/600 unique words, misses set aside, native-adapter reload after 45 answers, completion, listening progress unchanged.');
  console.log('PASS listening quiz: audio, 4+4 options, both required, independent marking, duplicate protection, reload, backup, level filters, completion, recall unchanged.');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await page.screenshot({path:path.join(__dirname,'release/android-layout-preview.png'),fullPage:true});assert.deepEqual(errors,[]);console.log('PASS packaged frontend: Android storage adapter, HSK level changes, actual offline MP3 playback, reload, export and 412px layout. Native integration tested separately.');

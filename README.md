@@ -2,15 +2,15 @@
 
 A personal creation by **Musawer Hussain Orakzai**.
 
-An offline Android app for recalling all 600 vocabulary words in classic HSK 1–3 (not HSK 3.0).
+An offline Android app for recalling 1,200 vocabulary entries in classic HSK 1–4 (not HSK 3.0).
 
 ## Full-deck review
 
-In Recall, choose **Round → Full HSK 1 (150), Full HSK 2 (150), or Full HSK 3 (300)**. Every word appears once in random order, including previously secure words. Missed and hesitant words are set aside and saved to your weak list. Unfinished decks resume after closing the app. Focused 20-word practice is still available.
+In Recall, choose **Round → Full HSK 1 (150), Full HSK 2 (150), Full HSK 3 (300), or Full HSK 4 (600)**. Every word appears once in random order, including previously secure words. Missed and hesitant words are set aside and saved to your weak list. Unfinished decks resume after closing the app. Focused 20-word practice is still available.
 
 ## Features
 
-- Chinese word recall with pinyin and English; extra HSK 3 practice in mixed rounds.
+- Chinese word recall with pinyin and English; extra HSK 4 practice in mixed rounds.
 - Persistent weak words, unfinished rounds and per-level progress.
 - Listening quiz: audio with four Chinese choices and four English meaning choices.
 - Separate listening history prioritizes words needing practice.
@@ -30,7 +30,7 @@ Progress is stored privately on your phone, separately from the laptop app. It i
 
 ## Build from source
 
-`web/` contains the shared recall interface and vocabulary. `android/` contains the native Android shell, listening quiz, mobile layout, packaging scripts and 600 word recordings.
+`web/` contains the shared recall interface and vocabulary. `android/` contains the native Android shell, listening quiz, mobile layout, packaging scripts and 1,200 word recordings.
 
 The build script targets Windows with Node.js, Python 3, JDK 17, Android SDK platform 36 and build tools 35.0.0. Install official tools into these local directories beneath `android/toolchain/`:
 
@@ -44,9 +44,13 @@ For browser regression tests on Windows with Edge installed: run `npm install`, 
 
 ## Testing and attribution
 
-Browser integration and Android 16 emulator tests cover offline audio, quiz scoring, filters, saved progress and update persistence. Not tested by the tooling on physical Samsung / One UI hardware.
+Version 1.3.1 passes packaged browser integration tests for all four decks, offline audio, quiz scoring, filters, saved progress, backups, and HSK 4 round reload after 345 answers. Native emulator tests were run for earlier releases; version 1.3.1 has not been tested on an emulator or physical phone. See [validation details](android/VALIDATION-1.3.1.md).
 
 Audio is synthesized Mandarin using Microsoft Huihui, not official exam recordings. This independent app is not affiliated with the HSK examination provider. Vocabulary and pronunciation have not received a complete linguistic audit.
+
+## HSK 4 vocabulary
+
+HSK 4 adds 600 entries, checked against entries 601–1200 in the [official classic vocabulary list](https://www.chinesetest.cn/userfiles/file/cihui.pdf). Words can contain multiple characters. HSK 4 level-specific meanings are retained even when a character appeared earlier. See [sources and corrections](android/vocabulary/README.md). This is the classic syllabus, not HSK 3.0.
 
 ## Ownership
 

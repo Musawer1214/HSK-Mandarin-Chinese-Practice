@@ -6,7 +6,7 @@ function cleanListening(raw){
  const r=raw.round;
  if(r&&Array.isArray(r.questions)&&r.questions.length<=20&&Number.isInteger(r.index)&&r.index>=0&&r.index<=r.questions.length){
   const valid=q=>q&&byId.has(q.id)&&['chinese','english'].every(k=>Array.isArray(q[k])&&q[k].length===4&&new Set(q[k]).size===4&&q[k].includes(q.id)&&q[k].every(id=>byId.has(id)))&&[null,...q.chinese].includes(q.c??null)&&[null,...q.english].includes(q.e??null);
-  if(r.questions.every(valid))out.round={level:['1','2','3','all'].includes(r.level)?r.level:'3',index:r.index,questions:r.questions.map(q=>({...q,c:q.c??null,e:q.e??null,submitted:!!q.submitted,played:!!q.played}))};
+  if(r.questions.every(valid))out.round={level:['1','2','3','4','all'].includes(r.level)?r.level:'3',index:r.index,questions:r.questions.map(q=>({...q,c:q.c??null,e:q.e??null,submitted:!!q.submitted,played:!!q.played}))};
  }
  return out;
 }
@@ -14,7 +14,7 @@ function cleanListening(raw){
  let active=false;
  const nav=document.querySelector('nav');
  nav.insertAdjacentHTML('beforeend','<button id="listeningTab" aria-pressed="false">Listening quiz</button>');
- document.querySelector('#library').insertAdjacentHTML('afterend',`<section id="listeningQuiz" hidden><h2>Listen, recognise, understand</h2><p>Choose the Chinese word and its English meaning. Both answers are checked together. Listening progress is saved separately from recall.</p><label>Quiz deck <select id="quizLevel"><option value="3">HSK 3</option><option value="2">HSK 2</option><option value="1">HSK 1</option><option value="all">All levels · HSK 3 focus</option></select></label><button id="quizNew">New 20-word quiz</button><p id="quizStats"></p><div id="quizCard"></div></section>`);
+ document.querySelector('#library').insertAdjacentHTML('afterend',`<section id="listeningQuiz" hidden><h2>Listen, recognise, understand</h2><p>Choose the Chinese word and its English meaning. Both answers are checked together. Listening progress is saved separately from recall.</p><label>Quiz deck <select id="quizLevel"><option value="3">HSK 3</option><option value="4">HSK 4</option><option value="2">HSK 2</option><option value="1">HSK 1</option><option value="all">All levels · HSK 4 focus</option></select></label><button id="quizNew">New 20-word quiz</button><p id="quizStats"></p><div id="quizCard"></div></section>`);
  const originalRender=render;
  render=function(){originalRender();$('#listeningTab').classList.toggle('selected',active);$('#listeningTab').setAttribute('aria-pressed',String(active));$('#listeningQuiz').hidden=!active;if(active){clearInterval(clock);$('#practice').hidden=true;$('#library').hidden=true;document.querySelectorAll('[data-view]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');});paint();}};
  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{active=false;render();}));
@@ -23,7 +23,7 @@ function cleanListening(raw){
  function start(){
   const d=data(),level=$('#quizLevel').value,pool=shuffle(WORDS.filter(w=>level==='all'||w.level===Number(level)));
   pool.sort((a,b)=>{const x=d.words[a.id],y=d.words[b.id];const priority=h=>h&&h.streak<3?0:!h?1:2;return priority(x)-priority(y)||(x?.lastSeen||0)-(y?.lastSeen||0);});
-  const chosen=[];const plan=[3,3,1,3,2,3,3,3,1,3,2,3,3,3,1,3,2,3,3,3];
+  const chosen=[];const plan=[4,4,1,4,2,4,3,4,1,4,2,4,3,4,3,4,3,4,4,4];
   for(let i=0;i<20&&pool.length;i++){let at=level==='all'?pool.findIndex(w=>w.level===plan[i]):0;if(at<0)at=0;chosen.push(pool.splice(at,1)[0]);}
   d.round={level,index:0,questions:chosen.map(w=>({id:w.id,chinese:options(w,'hanzi'),english:options(w,'english'),c:null,e:null,submitted:false,played:false}))};save();paint();play();
  }

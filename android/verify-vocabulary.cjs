@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {words}=require('./hsk4.cjs');
+const official=require('./vocabulary/official-hsk4-new.json');
+const normalize=s=>s.replace(/（[^）]*）/g,'');
+assert.equal(words.length,600);
+assert.equal(new Set(words.map(w=>w.id)).size,600);
+assert.deepEqual(words.map(w=>w.hanzi).sort(),official.map(w=>normalize(w.entry)).sort());
+for(const [hanzi,pinyin] of [['得','děi'],['只','zhī'],['弹钢琴','tán gāngqín']])assert.equal(words.find(w=>w.hanzi===hanzi).pinyin,pinyin);
+assert(words.find(w=>w.hanzi==='等').english.includes('particle'));
+assert(words.find(w=>w.hanzi==='对').english.includes('adjective'));
+assert(words.find(w=>w.hanzi==='过').english.includes('verb'));
+console.log('PASS: all 600 HSK 4 headwords match official entries 601–1200, with required sense/pronunciation corrections.');

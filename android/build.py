@@ -26,7 +26,7 @@ normalized=build/'normalized.apk'
 with zipfile.ZipFile(unsigned) as zin,zipfile.ZipFile(normalized,'w') as zout:
  for info in zin.infolist():zout.writestr(info.filename,zin.read(info.filename),compress_type=info.compress_type)
 aligned=build/'aligned.apk';run([buildtools/'zipalign.exe','-f','4',normalized,aligned])
-apk=output/'HSK-Recall-1.2.0.apk'
+apk=output/'HSK-Recall-1.3.1.apk'
 run([java,'-jar',buildtools/'lib/apksigner.jar','sign','--ks',keystore,'--ks-key-alias','hsk-recall','--ks-pass','env:HSK_KEY_PASSWORD','--key-pass','env:HSK_KEY_PASSWORD','--out',apk,aligned])
 run([java,'-jar',buildtools/'lib/apksigner.jar','verify','--verbose',apk])
 sha=hashlib.sha256(apk.read_bytes()).hexdigest();(output/'SHA256.txt').write_text(sha+'  '+apk.name+'\n');print('Built',apk,'bytes',apk.stat().st_size,flush=True)

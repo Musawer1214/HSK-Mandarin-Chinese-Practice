@@ -2,7 +2,7 @@
   "name": "hsk-recall",
   "private": true,
   "scripts": {
-    "test": "node android/prepare-assets.cjs && node android/verify-web.cjs"
+    "test": "node android/verify-vocabulary.cjs && node android/prepare-assets.cjs && node android/verify-web.cjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1"

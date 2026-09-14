@@ -14,7 +14,7 @@
  window.SpeechSynthesisUtterance=class {constructor(text){this.text=text;this.rate=1;}};
  const speech={getVoices:()=>[{lang:'zh-CN',name:'Bundled Mandarin voice'}],cancel(){if(active){active.pause();active.src='';active=null;}},speak(u){
   this.cancel();
-  if(!/^hsk[123]-word-\d+$/.test(u.cardId||'')){u.onerror?.();return;}
+  if(!/^hsk[1234]-word-\d+$/.test(u.cardId||'')){u.onerror?.();return;}
   const audio=new Audio('audio/'+u.cardId+'.mp3');active=audio;audio.playbackRate=u.rate||1;
   audio.onended=()=>{u.onend?.();};audio.onerror=()=>u.onerror?.();audio.onplaying=()=>u.onstart?.();
   audio.play().catch(()=>u.onerror?.());
