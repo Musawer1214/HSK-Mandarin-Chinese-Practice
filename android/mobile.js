@@ -9,7 +9,7 @@ document.querySelector('main').append(help);
 help.append(document.querySelector('.guide'),document.querySelector('footer'));
 document.querySelectorAll('.footnote').forEach(p=>help.append(p));
 help.insertAdjacentHTML('beforeend','<p id="creatorCredit" style="margin:20px 0 4px;padding-top:16px;border-top:1px solid #dbe3d2;text-align:center;font-size:12px;line-height:1.7;color:#65765d">A personal creation by<br><strong style="color:#2c533f;font-weight:600">Musawer Hussain Orakzai</strong></p>');
-document.querySelector('#creatorCredit').insertAdjacentHTML('beforebegin','<div style="margin-top:18px"><button id="githubUpdates">Check updates on GitHub</button><p class="footnote">Version 1.3.1 · Opens GitHub in your browser. Install updates over this app to keep your progress.</p></div>');
+document.querySelector('#creatorCredit').insertAdjacentHTML('beforebegin','<div style="margin-top:18px"><button id="githubUpdates">Check updates on GitHub</button><p class="footnote">Version 1.4.0 · Opens GitHub in your browser. Install updates over this app to keep your progress.</p></div>');
 document.querySelector('#githubUpdates').onclick=()=>AndroidBridge.openUpdates('https://github.com/Musawer1214/hsk-recall/releases/latest');
 document.querySelector('[data-view="practice"]').textContent='Recall';
 document.querySelector('[data-view="all"]').textContent='All words';

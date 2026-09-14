@@ -1,12 +1,13 @@
-# HSK Recall 1.3.1 — HSK 4
+# HSK Recall 1.4.0 — HSK 4A/4B textbook coverage
 
-- Adds all 600 new classic HSK 4 entries: 1,200 entries across HSK 1–4.
-- Adds HSK 4 recall, full-deck review, library filters, progress, and listening quizzes with bundled offline audio.
-- Mixed rounds now emphasize HSK 4. Full HSK 4 rounds resume after more than 300 answers.
-- Corrects the preliminary 1.3.0 vocabulary source: adds 只 and 得, uses 弹钢琴, and clarifies the HSK 4 senses of 等, 对, and 过. All 600 headwords match official entries 601–1200.
+Adds 93 vocabulary cards identified by checking the main New Words indexes in HSK Standard Course 4A and 4B. Examples include 餐厅, 厨房, 眼镜, 信息, and 普通话. Each new card includes pinyin, a concise English meaning, and bundled offline audio.
 
-Install **HSK-Recall-1.3.1.apk** over your existing official app to keep progress; do not uninstall first. Version code 7 uses the existing package ID and signing key. Existing HSK 1–3 IDs and content are unchanged. Export a backup for an extra copy.
+- All 602 main index rows (601 distinct headwords) now have matching cards across the app.
+- HSK 4 has 693 cards: the existing 600 historical official-list entries plus 93 textbook additions. Total: 1,293 cards.
+- Recall, full-deck review, search, progress, and listening quizzes include the additions.
+- Supplementary lists and proper nouns are excluded.
+- Existing IDs, progress format, package ID, and signing key are preserved. Version code: 8.
 
-Validation: official headword comparison, all four full decks, saved-round reload after 345 HSK 4 answers, listening scoring and persistence, offline playback, backups, mobile layout, APK signature and archive checks, and decoding all 1,200 audio clips. Tests use the packaged frontend in Edge; this version was not tested on an emulator or physical phone. English definitions and synthesized pronunciation have not received an exhaustive linguistic audit.
+Install **HSK-Recall-1.4.0.apk** over your existing app to retain progress. Do not uninstall first.
 
-A personal creation by Musawer Hussain Orakzai.
+Validation: main textbook row coverage, historical official-list comparison, all four full-deck counts, textbook audio playback, recall/listening persistence, backups, HSK 4 reload after 345 answers, APK integrity/signature, and decoding all 1,293 clips. The release assets match the tested repository frontend. This version was not run on an emulator or physical phone. Coverage checks do not certify every definition or synthesized pronunciation.

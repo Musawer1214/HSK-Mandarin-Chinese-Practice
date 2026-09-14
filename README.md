@@ -1,6 +1,6 @@
 # HSK Recall
 
-Build faster Chinese word recall with focused practice, full-deck reviews, and offline listening quizzes. HSK Recall is an Android app with **1,200 vocabulary entries across classic HSK 1–4**, bundled Mandarin audio, and progress that stays on your device.
+Build faster Chinese word recall with focused practice, full-deck reviews, and offline listening quizzes. HSK Recall is an Android app with **1,293 vocabulary entries across classic HSK 1–4**, bundled Mandarin audio, and progress that stays on your device.
 
 [Download the latest APK](https://github.com/Musawer1214/HSK-Mandarin-Chinese-Practice/releases/latest)
 
@@ -17,8 +17,10 @@ Build faster Chinese word recall with focused practice, full-deck reviews, and o
 | HSK 1 | 150 |
 | HSK 2 | 150 |
 | HSK 3 | 300 |
-| HSK 4 | 600 |
-| **Total** | **1,200** |
+| HSK 4 | 693 |
+| **Total** | **1,293** |
+
+HSK 4 combines the 600 historical official-list entries with 93 additions needed to cover the main **HSK Standard Course 4A and 4B** vocabulary indexes. Supplementary and proper-noun lists are excluded.
 
 These are vocabulary entries, including multi-character words and level-specific meanings. The deck follows the classic syllabus, not HSK 3.0.
 
@@ -81,10 +83,10 @@ Validate the built APK and audio files with FFprobe available on your PATH:
 python android/verify-package.py
 ```
 
-Version 1.3.1 checks cover all four decks, offline playback, quiz scoring, saved progress, backup export, mobile layout, and resuming HSK 4 after 345 answers. This version has not been tested on an emulator or physical phone. See [validation details](android/VALIDATION-1.3.1.md).
+Version 1.4.0 checks cover all four decks, offline playback, quiz scoring, saved progress, backup export, mobile layout, and resuming HSK 4 after 345 answers. This version has not been tested on an emulator or physical phone. See [validation details](android/VALIDATION-1.4.0.md).
 
 ## Vocabulary and audio
 
-All 600 HSK 4 headwords match entries 601–1200 in the [official classic vocabulary list](https://www.chinesetest.cn/userfiles/file/cihui.pdf). See [vocabulary sources and corrections](android/vocabulary/README.md) for the comparison method and third-party data license.
+The 600-entry historical HSK 4 core matches entries 601–1200 in the [official classic vocabulary list](https://www.chinesetest.cn/userfiles/file/cihui.pdf). All 602 main textbook rows (601 distinct headwords) are covered by cards across the app. See [vocabulary sources and corrections](android/vocabulary/README.md) for the comparison method and third-party data license.
 
 Pronunciation is synthesized Mandarin using Microsoft Huihui. Headword coverage is verified; English definitions and individual audio pronunciations have not received an exhaustive linguistic audit.

@@ -1,0 +1,1304 @@
+[
+  {
+    "id": "hsk4-book-001",
+    "hanzi": "百分之",
+    "pinyin": "bǎifēnzhī",
+    "english": "percent",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 141
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-002",
+    "hanzi": "比如",
+    "pinyin": "bǐrú",
+    "english": "for example",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 141
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-003",
+    "hanzi": "出现",
+    "pinyin": "chūxiàn",
+    "english": "to appear; to emerge",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 142
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-004",
+    "hanzi": "低",
+    "pinyin": "dī",
+    "english": "low",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 142
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-005",
+    "hanzi": "短信",
+    "pinyin": "duǎnxìn",
+    "english": "text message; SMS",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 142
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-006",
+    "hanzi": "放松",
+    "pinyin": "fàngsōng",
+    "english": "to relax",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 143
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-007",
+    "hanzi": "刚",
+    "pinyin": "gāng",
+    "english": "just; a moment ago",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 143
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-008",
+    "hanzi": "果汁",
+    "pinyin": "guǒzhī",
+    "english": "fruit juice",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 144
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-009",
+    "hanzi": "建议",
+    "pinyin": "jiànyì",
+    "english": "suggestion; to suggest",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 144
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-010",
+    "hanzi": "景色",
+    "pinyin": "jǐngsè",
+    "english": "scenery; view",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 145
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-011",
+    "hanzi": "举行",
+    "pinyin": "jǔxíng",
+    "english": "to hold an event or ceremony",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 145
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-012",
+    "hanzi": "聚会",
+    "pinyin": "jùhuì",
+    "english": "gathering; to get together",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 145
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-013",
+    "hanzi": "空儿",
+    "pinyin": "kòngr",
+    "english": "free time",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 145
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-014",
+    "hanzi": "礼拜天",
+    "pinyin": "lǐbàitiān",
+    "english": "Sunday",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 145
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-015",
+    "hanzi": "葡萄",
+    "pinyin": "pútao",
+    "english": "grape",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 146
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-016",
+    "hanzi": "生意",
+    "pinyin": "shēngyi",
+    "english": "business; trade",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 147
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-017",
+    "hanzi": "使",
+    "pinyin": "shǐ",
+    "english": "to make; to cause",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 147
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-018",
+    "hanzi": "糖",
+    "pinyin": "táng",
+    "english": "sugar; candy",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 148
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-019",
+    "hanzi": "提",
+    "pinyin": "tí",
+    "english": "to carry in the hand; to mention",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 148
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-020",
+    "hanzi": "现金",
+    "pinyin": "xiànjīn",
+    "english": "cash",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 148
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-021",
+    "hanzi": "橡皮",
+    "pinyin": "xiàngpí",
+    "english": "eraser",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 148
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-022",
+    "hanzi": "修理",
+    "pinyin": "xiūlǐ",
+    "english": "to repair",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 149
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-023",
+    "hanzi": "研究",
+    "pinyin": "yánjiū",
+    "english": "to research; to study",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 149
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-024",
+    "hanzi": "要是",
+    "pinyin": "yàoshi",
+    "english": "if; supposing",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 149
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-025",
+    "hanzi": "以为",
+    "pinyin": "yǐwéi",
+    "english": "to think or assume, often mistakenly",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 149
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-026",
+    "hanzi": "应聘",
+    "pinyin": "yìngpìn",
+    "english": "to apply for a job",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 149
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-027",
+    "hanzi": "作家",
+    "pinyin": "zuòjiā",
+    "english": "writer; author",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "A",
+        "pdfPage": 150
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-028",
+    "hanzi": "棒",
+    "pinyin": "bàng",
+    "english": "excellent; great",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 151
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-029",
+    "hanzi": "包子",
+    "pinyin": "bāozi",
+    "english": "steamed bun with filling",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 151
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-030",
+    "hanzi": "表示",
+    "pinyin": "biǎoshì",
+    "english": "to express; to indicate",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 151
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-031",
+    "hanzi": "表演",
+    "pinyin": "biǎoyǎn",
+    "english": "to perform; performance",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 151
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-032",
+    "hanzi": "餐厅",
+    "pinyin": "cāntīng",
+    "english": "restaurant; dining room",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-033",
+    "hanzi": "厕所",
+    "pinyin": "cèsuǒ",
+    "english": "toilet; restroom",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-034",
+    "hanzi": "厨房",
+    "pinyin": "chúfáng",
+    "english": "kitchen",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-035",
+    "hanzi": "词语",
+    "pinyin": "cíyǔ",
+    "english": "word; expression",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-036",
+    "hanzi": "存",
+    "pinyin": "cún",
+    "english": "to store; to deposit; to save",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-037",
+    "hanzi": "错误",
+    "pinyin": "cuòwù",
+    "english": "mistake; error",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-038",
+    "hanzi": "打招呼",
+    "pinyin": "dǎ zhāohu",
+    "english": "to greet someone",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-039",
+    "hanzi": "倒",
+    "pinyin": "dào",
+    "english": "to pour; to move backwards",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-040",
+    "hanzi": "登机牌",
+    "pinyin": "dēngjīpái",
+    "english": "boarding pass",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 152
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-041",
+    "hanzi": "地点",
+    "pinyin": "dìdiǎn",
+    "english": "place; location",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-042",
+    "hanzi": "对于",
+    "pinyin": "duìyú",
+    "english": "regarding; concerning",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-043",
+    "hanzi": "房东",
+    "pinyin": "fángdōng",
+    "english": "landlord",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-044",
+    "hanzi": "付款",
+    "pinyin": "fùkuǎn",
+    "english": "to pay; payment",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-045",
+    "hanzi": "赶",
+    "pinyin": "gǎn",
+    "english": "to hurry; to catch up",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-046",
+    "hanzi": "敢",
+    "pinyin": "gǎn",
+    "english": "to dare",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-047",
+    "hanzi": "高速公路",
+    "pinyin": "gāosù gōnglù",
+    "english": "expressway; highway",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-048",
+    "hanzi": "胳膊",
+    "pinyin": "gēbo",
+    "english": "arm",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-049",
+    "hanzi": "功夫",
+    "pinyin": "gōngfu",
+    "english": "skill; kung fu",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-050",
+    "hanzi": "国籍",
+    "pinyin": "guójí",
+    "english": "nationality",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 153
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-051",
+    "hanzi": "互联网",
+    "pinyin": "hùliánwǎng",
+    "english": "Internet",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 154
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-052",
+    "hanzi": "降落",
+    "pinyin": "jiàngluò",
+    "english": "to land; to descend",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 154
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-053",
+    "hanzi": "郊区",
+    "pinyin": "jiāoqū",
+    "english": "suburbs; outskirts",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 154
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-054",
+    "hanzi": "接着",
+    "pinyin": "jiēzhe",
+    "english": "then; to continue",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 154
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-055",
+    "hanzi": "节",
+    "pinyin": "jié",
+    "english": "section; measure word for classes and segments",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 154
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-056",
+    "hanzi": "举",
+    "pinyin": "jǔ",
+    "english": "to raise; to lift",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-057",
+    "hanzi": "开心",
+    "pinyin": "kāixīn",
+    "english": "happy; delighted",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-058",
+    "hanzi": "烤鸭",
+    "pinyin": "kǎoyā",
+    "english": "roast duck",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-059",
+    "hanzi": "客厅",
+    "pinyin": "kètīng",
+    "english": "living room",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-060",
+    "hanzi": "空",
+    "pinyin": "kōng",
+    "english": "empty",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-061",
+    "hanzi": "矿泉水",
+    "pinyin": "kuàngquánshuǐ",
+    "english": "mineral water",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-062",
+    "hanzi": "来自",
+    "pinyin": "láizì",
+    "english": "to come from",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-063",
+    "hanzi": "零钱",
+    "pinyin": "língqián",
+    "english": "small change",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 155
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-064",
+    "hanzi": "旅行",
+    "pinyin": "lǚxíng",
+    "english": "to travel; journey",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-065",
+    "hanzi": "毛",
+    "pinyin": "máo",
+    "english": "hair; fur; one tenth of a yuan",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-066",
+    "hanzi": "迷路",
+    "pinyin": "mílù",
+    "english": "to lose one's way",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-067",
+    "hanzi": "秒",
+    "pinyin": "miǎo",
+    "english": "second, a unit of time",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-068",
+    "hanzi": "暖",
+    "pinyin": "nuǎn",
+    "english": "to warm; warm",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-069",
+    "hanzi": "排队",
+    "pinyin": "páiduì",
+    "english": "to line up; to queue",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-070",
+    "hanzi": "普通话",
+    "pinyin": "pǔtōnghuà",
+    "english": "standard Mandarin Chinese",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 156
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-071",
+    "hanzi": "勺子",
+    "pinyin": "sháozi",
+    "english": "spoon",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 157
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-072",
+    "hanzi": "是否",
+    "pinyin": "shìfǒu",
+    "english": "whether; whether or not",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 157
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-073",
+    "hanzi": "停",
+    "pinyin": "tíng",
+    "english": "to stop",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-074",
+    "hanzi": "同时",
+    "pinyin": "tóngshí",
+    "english": "at the same time",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-075",
+    "hanzi": "卫生间",
+    "pinyin": "wèishēngjiān",
+    "english": "bathroom; restroom",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-076",
+    "hanzi": "无法",
+    "pinyin": "wúfǎ",
+    "english": "to be unable to; to have no way to",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-077",
+    "hanzi": "相同",
+    "pinyin": "xiāngtóng",
+    "english": "the same; identical",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-078",
+    "hanzi": "小吃",
+    "pinyin": "xiǎochī",
+    "english": "snack; local specialty food",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-079",
+    "hanzi": "小伙子",
+    "pinyin": "xiǎohuǒzi",
+    "english": "young man",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 158
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-080",
+    "hanzi": "信封",
+    "pinyin": "xìnfēng",
+    "english": "envelope",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 159
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-081",
+    "hanzi": "信息",
+    "pinyin": "xìnxī",
+    "english": "information; message",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 159
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-082",
+    "hanzi": "学期",
+    "pinyin": "xuéqī",
+    "english": "school term; semester",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 159
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-083",
+    "hanzi": "眼镜",
+    "pinyin": "yǎnjìng",
+    "english": "eyeglasses",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 159
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-084",
+    "hanzi": "邮局",
+    "pinyin": "yóujú",
+    "english": "post office",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 159
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-085",
+    "hanzi": "云",
+    "pinyin": "yún",
+    "english": "cloud",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 159
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-086",
+    "hanzi": "占线",
+    "pinyin": "zhànxiàn",
+    "english": "the telephone line is busy",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-087",
+    "hanzi": "照",
+    "pinyin": "zhào",
+    "english": "to shine; to take a photograph; to reflect",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-088",
+    "hanzi": "纸袋",
+    "pinyin": "zhǐdài",
+    "english": "paper bag",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-089",
+    "hanzi": "重",
+    "pinyin": "zhòng",
+    "english": "heavy",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-090",
+    "hanzi": "转",
+    "pinyin": "zhuǎn",
+    "english": "to turn; to change direction",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-091",
+    "hanzi": "自信",
+    "pinyin": "zìxìn",
+    "english": "self-confidence; confident",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-092",
+    "hanzi": "左右",
+    "pinyin": "zuǒyòu",
+    "english": "approximately; about",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  },
+  {
+    "id": "hsk4-book-093",
+    "hanzi": "作用",
+    "pinyin": "zuòyòng",
+    "english": "function; effect; role",
+    "level": 4,
+    "source": "HSK Standard Course 4A/4B — main New Words",
+    "references": [
+      {
+        "book": "B",
+        "pdfPage": 160
+      }
+    ]
+  }
+]

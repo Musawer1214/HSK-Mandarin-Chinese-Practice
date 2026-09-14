@@ -17,13 +17,15 @@ words.push({id:'hsk4-word-1202',hanzi:'只',pinyin:'zhī',english:'measure word 
  {id:'hsk4-word-1203',hanzi:'得',pinyin:'děi',english:'must; have to',level:4});
 if(words.length!==600||words.some(w=>!w.hanzi||!w.pinyin||!w.english))throw Error('Invalid HSK 4 vocabulary');
 function replace(text,from,to){if(!text.includes(from))throw Error('Shared frontend changed: '+from);return text.replaceAll(from,to);}
+exports.classicWords=words.slice();
+words.push(...require('./vocabulary/hsk4-book-additions.json'));
 exports.words=words;
 exports.html=function(html){
  for(const [from,to] of [
- ['HSK 1–3','HSK 1–4'],['All 600 words','All 1200 words'],
- ['600 cumulative vocabulary entries, not 600 individual characters.','1200 vocabulary entries, including 600 distinct HSK 4 entries.'],
- ['<option value="3">Full HSK 3 · 300 words</option>','<option value="3">Full HSK 3 · 300 words</option><option value="4">Full HSK 4 · 600 words</option>'],
- ['<option value="3">HSK 3 only · 300</option>','<option value="4">HSK 4 only · 600</option><option value="3">HSK 3 only · 300</option>'],
+ ['HSK 1–3','HSK 1–4'],['All 600 words','All 1293 words'],
+ ['600 cumulative vocabulary entries, not 600 individual characters.','1293 vocabulary entries, including the classic HSK 4 list and all main New Words from HSK Standard Course 4A/4B.'],
+ ['<option value="3">Full HSK 3 · 300 words</option>','<option value="3">Full HSK 3 · 300 words</option><option value="4">Full HSK 4 · 693 words</option>'],
+ ['<option value="3">HSK 3 only · 300</option>','<option value="4">HSK 4 only · 693</option><option value="3">HSK 3 only · 300</option>'],
  ['<option value="3">HSK 3</option>','<option value="4">HSK 4</option><option value="3">HSK 3</option>'],
  ['HSK 3 focus','HSK 4 focus']])html=replace(html,from,to);
  return html;
@@ -33,7 +35,7 @@ exports.app=function(js){
  ["['1','2','3'","['1','2','3','4'"],['[1,2,3].map','[1,2,3,4].map'],
  ["s.mode==='full'?300:","s.mode==='full'?WORDS.filter(w=>w.level===Number(s.level)).length:"],
  [' / 600',' / ${WORDS.length}'],
- ['HSK 3: 300. Every original entry is here.','HSK 3: 300 · HSK 4: 600.'],
+ ['HSK 3: 300. Every original entry is here.','HSK 3: 300 · HSK 4: 693.'],
  ['[1,2,3,3,3,3,3,1,3,3,3,2,3,3,3,1,3,3,3,2]','[1,2,3,4,4,4,3,4,4,4,2,4,3,4,4,1,4,3,4,4]'],
  ['// Cold start: 14 HSK3 + 3 HSK1 + 3 HSK2.','// Cold start: HSK 4 focus with lower-level warm-up.']])js=replace(js,from,to);
  return js;
